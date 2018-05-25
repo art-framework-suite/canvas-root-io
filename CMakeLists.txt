@@ -11,17 +11,16 @@
 #  make install
 #  make package (builds distribution tarfile)
 # ======================================================================
+# Required to keep CMake happy.
+cmake_minimum_required(VERSION ${CMAKE_VERSION} FATAL_ERROR)
+# Actual version requirement.
+cmake_policy(VERSION 3.4)
 
+# Project information.
+project(canvas_root_io VERSION 1.01.06 LANGUAGES CXX)
 
-# use cmake 2.8 or later
-cmake_minimum_required (VERSION 2.8)
-
-project(canvas)
-
-# cetbuildtools contains our cmake modules
-find_package(cetbuildtools REQUIRED)
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Modules)
+# cetmodules contains our cmake modules
+find_package(cetmodules REQUIRED)
 
 include(CetCMakeEnv)
 cet_cmake_env()
@@ -32,30 +31,18 @@ cet_set_compiler_flags(DIAGS VIGILANT
   EXTRA_FLAGS -pedantic
   EXTRA_CXX_FLAGS -Wnon-virtual-dtor -Wdelete-non-virtual-dtor
   )
-cet_have_qual(sse2 SSE2)
-if ( SSE2 )
-  cet_add_compiler_flags(CXX -msse2 -ftree-vectorizer-verbose=2)
-endif()
 
 cet_report_compiler_flags()
 
-find_ups_product(canvas)
-find_ups_product(clhep)
-find_ups_product(cetlib_except)
-find_ups_product(cetlib v2_01_00)
-find_ups_product(fhiclcpp)
-find_ups_product(messagefacility)
-find_ups_product(tbb)
-find_ups_root()
-find_ups_boost()
-find_ups_product(cetbuildtools)
-
-
-# define CLHEP
-cet_find_library( CLHEP  NAMES CLHEP   PATHS ENV CLHEP_LIB_DIR NO_DEFAULT_PATH )
-
-# define cppunit
-cet_find_library( CPPUNIT NAMES cppunit   PATHS ENV CPPUNIT_LIB   NO_DEFAULT_PATH )
+find_package(canvas REQUIRED)
+find_package(cetlib_except REQUIRED)
+find_package(fhicl-cpp REQUIRED)
+find_package(messagefacility REQUIRED)
+find_package(TBB REQUIRED)
+set(TBB "TBB::tbb")
+find_package(CLHEP COMPONENTS Matrix Vector REQUIRED)
+find_package(root REQUIRED)
+find_package(Boost COMPONENTS thread REQUIRED)
 
 # art_dictionary
 include(ArtDictionary)
