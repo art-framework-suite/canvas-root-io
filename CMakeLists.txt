@@ -22,6 +22,8 @@ project(canvas_root_io VERSION 1.01.06 LANGUAGES CXX)
 # cetmodules contains our cmake modules
 find_package(cetmodules REQUIRED)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Modules)
+
 include(CetCMakeEnv)
 cet_cmake_env()
 
@@ -36,12 +38,13 @@ cet_report_compiler_flags()
 
 find_package(canvas REQUIRED)
 find_package(cetlib_except REQUIRED)
-find_package(fhicl-cpp REQUIRED)
+find_package(fhiclcpp REQUIRED)
 find_package(messagefacility REQUIRED)
 find_package(TBB REQUIRED)
 set(TBB "TBB::tbb")
 find_package(CLHEP COMPONENTS Matrix Vector REQUIRED)
-find_package(root REQUIRED)
+include_directories(${CLHEP_INCLUDE_DIRS})
+find_package(ROOT REQUIRED COMPONENTS)
 find_package(Boost COMPONENTS thread REQUIRED)
 
 # art_dictionary
@@ -58,6 +61,3 @@ add_subdirectory(Modules)
 
 # tools - e.g. migration scripts
 add_subdirectory(tools)
-
-# packaging utility
-include(UseCPack)
