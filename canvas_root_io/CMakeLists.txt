@@ -7,7 +7,7 @@ add_subdirectory(Dictionaries)
 add_subdirectory(Streamers)
 add_subdirectory(Utilities)
 
-find_package(Threads)
+find_package(Threads REQUIRED)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 
 cet_make(LIBRARY_NAME canvas_root_io
@@ -17,7 +17,7 @@ cet_make(LIBRARY_NAME canvas_root_io
   LIBRARIES
   MF_MessageLogger
   ${ROOT_Core_LIBRARY}
-  ${TBB}
+  TBB::tbb
   canvas
   fhiclcpp
   cetlib
