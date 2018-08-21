@@ -38,6 +38,7 @@ cet_report_compiler_flags()
 
 find_package(canvas REQUIRED)
 find_package(cetlib_except REQUIRED)
+find_package(cetlib REQUIRED)
 find_package(fhiclcpp REQUIRED)
 find_package(messagefacility REQUIRED)
 find_package(TBB REQUIRED)
