@@ -1,5 +1,5 @@
-|depends| depends
-=================
+|release| depends on
+====================
 
 | `(internal link): canvas v3_07_01 <../../canvas/v3_07_01/index.html>`_
 | (external link): root v6_16_00

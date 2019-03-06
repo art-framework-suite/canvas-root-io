@@ -13,7 +13,6 @@
 
    Depends on<depends>
 
+The canvas_root_io package is the infrastructure required for providing ROOT I/O operations for the full art framework and the lightweight gallery framework. 
+In particular, the ROOT dictionaries art provides for experiments to use are located in canvas.
 
-Library Overview
-----------------
-fill this out cuh
