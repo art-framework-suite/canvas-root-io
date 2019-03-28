@@ -9,9 +9,9 @@
 .. toctree::
    :maxdepth: 2
 
-   Release notes<releaseNotes>
+`Release notes <releaseNotes.html>`_
 
-   Depends on<depends>
+`Depends on <depends.html>`_
 
 The canvas_root_io package is the infrastructure required for providing ROOT I/O operations for the full art framework and the lightweight gallery framework. 
 In particular, the ROOT dictionaries art provides for experiments to use are located in canvas.
