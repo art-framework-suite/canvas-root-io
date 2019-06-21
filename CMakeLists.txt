@@ -19,7 +19,7 @@ cmake_minimum_required (VERSION 3.11)
 project(canvas_root_io)
 
 # cetbuildtools contains our cmake modules
-find_package(cetbuildtools REQUIRED)
+find_package(cetbuildtools 7.13.01 REQUIRED)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Modules)
 
@@ -74,9 +74,7 @@ find_ups_product(cetlib v2_01_00)
 find_ups_product(fhiclcpp)
 find_ups_product(messagefacility)
 find_ups_root()
-find_ups_boost()
-find_ups_product(cetbuildtools)
-
+find_ups_boost(BOOST_TARGETS)
 
 # define CLHEP
 cet_find_library( CLHEP  NAMES CLHEP   PATHS ENV CLHEP_LIB_DIR NO_DEFAULT_PATH )
