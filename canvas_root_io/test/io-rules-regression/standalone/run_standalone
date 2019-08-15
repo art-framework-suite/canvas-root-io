@@ -1,0 +1,58 @@
+#!/bin/bash -e
+
+function usage()
+{
+  cat <<EOF 
+usage: ${0##*/} [-c] [-j #]
+       ${0##*/} [-h]
+
+Options:
+  -c
+    Clean build directory prior to build and test.
+  -h
+    This help.
+  -j #
+    Parallelism level for make and ctest.
+
+EOF
+  exit ${1:-1}
+}
+
+function find_cetmodules_dir()
+{
+  local latest_version_dir="$(ls -1d "${1}/cetmodules/"*.version | sort -V -r | head -1)"
+  echo "${latest_version_dir%.version}"
+}
+
+while getopts :cj:h OPT; do
+  case $OPT in
+    c)
+      (( clean = 1 ))
+      ;;
+    j)
+      jarg=(-j "$OPTARG")
+      ;;
+    h)
+      usage
+      ;;
+    *)
+      usage 2
+  esac
+done
+
+shift $(( OPTIND - 1 ))
+OPTIND=1
+TOP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd -P)
+
+CETMODULES_DIR="$(find_cetmodules_dir "${TOP_DIR}")"
+export CMAKE_PREFIX_PATH="${CETMODULES_DIR}${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}"
+export PATH="${CETMODULES_DIR}/bin:${PATH}"
+cd ${TOP_DIR}/build
+if (( ${clean:-0} )); then
+  rm -rf *
+fi
+set -x
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=17 -DROOT_FIXED_10271:BOOL=TRUE \
+  ../io-rules-regression
+make "${jarg[@]}"
+ctest --output-on-failure "${jarg[@]}"
