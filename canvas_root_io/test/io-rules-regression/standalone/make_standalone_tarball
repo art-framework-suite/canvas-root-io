@@ -95,7 +95,7 @@ tar -c -C "${source_dir}" \
   tar x || { echo "Unable to transfer test source to staging area." 1>&2; exit 1; }
 
 cd ..
-cp "${source_dir}/standalone/run_standalone" .
+cp "${source_dir}/standalone/"{setup.sh,run_standalone} .
 mkdir build
 
 tar -C "${TMP}" -c -f "${tarball_dir}/${tarball}" ${compression_arg} "${tarball_stem}"
