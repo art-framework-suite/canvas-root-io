@@ -43,7 +43,16 @@ if (( ${clean:-0} )); then
   rm -rf *
 fi
 set -x
-cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=17 -DROOT_FIXED_10271:BOOL=TRUE \
+
+# CMake.
+cmake -DCMAKE_BUILD_TYPE=Debug \
+      -DCMAKE_CXX_STANDARD=17 \
+      -DROOT_FIXED_GENERAL_IO_RULES:BOOL=TRUE \
+      -DROOT_FIXED_DOUBLE32T:BOOL=TRUE \
   ../io-rules-regression
+
+# Build.
 make "${jarg[@]}"
+
+# Test.
 ctest --output-on-failure "${jarg[@]}"
