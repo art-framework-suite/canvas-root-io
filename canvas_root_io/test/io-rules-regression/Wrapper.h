@@ -7,7 +7,8 @@
 #include <stdexcept>
 
 namespace arttest {
-  template <typename T> class Wrapper;
+  template <typename T>
+  class Wrapper;
 }
 
 template <typename T>
@@ -20,25 +21,29 @@ public:
   T const* product() const;
   T const* operator->() const;
 
-  static short Class_Version() { return 10; }
+  static short
+  Class_Version()
+  {
+    return 10;
+  }
 
 private:
-  bool isPresent_() const override { return present; }
-  T && refOrThrow(T * ptr);
+  bool
+  isPresent_() const override
+  {
+    return present;
+  }
+  T&& refOrThrow(T* ptr);
 
-  bool present {false};
+  bool present{false};
   unsigned rangeSetID{-1u};
   T obj{};
 };
 
 template <typename T>
 arttest::Wrapper<T>::Wrapper(std::unique_ptr<T> ptr)
-  :
-  present{ptr.get() != nullptr},
-  rangeSetID{-1u},
-  obj(refOrThrow(ptr.get()))
-  {
-  }
+  : present{ptr.get() != nullptr}, rangeSetID{-1u}, obj(refOrThrow(ptr.get()))
+{}
 
 template <typename T>
 T const*
@@ -54,8 +59,8 @@ T const* arttest::Wrapper<T>::operator->() const
 }
 
 template <typename T>
-inline T &&
-arttest::Wrapper<T>::refOrThrow(T * ptr)
+inline T&&
+arttest::Wrapper<T>::refOrThrow(T* ptr)
 {
   if (ptr) {
     return std::move(*ptr);

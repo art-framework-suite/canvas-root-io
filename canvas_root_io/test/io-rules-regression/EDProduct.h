@@ -9,7 +9,11 @@ class arttest::EDProduct {
 public:
   virtual ~EDProduct() noexcept = default;
 
-  bool isPresent() const { return isPresent_(); }
+  bool
+  isPresent() const
+  {
+    return isPresent_();
+  }
 
 private:
   virtual bool isPresent_() const = 0;

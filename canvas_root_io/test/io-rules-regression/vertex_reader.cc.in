@@ -15,7 +15,9 @@
 #include <memory>
 #include <string>
 
-int main(int argc, char ** argv) {
+int
+main(int argc, char** argv)
+{
   arttest::setupRoot();
   std::string fileName;
   if (argc == 2) {
@@ -31,7 +33,7 @@ int main(int argc, char ** argv) {
                   "targetClass=\"ROOT::Math::SMatrix<Double32_t,3,3,ROOT::Math::MatRepSym<Double32_t,3> >\" ");
 #endif
   TFile hfile(fileName.c_str());
-  TTree * vtree = nullptr;
+  TTree* vtree = nullptr;
   hfile.GetObject("VertexTree", vtree);
   auto branch = vtree->GetBranch("vertex");
 #ifdef WANT_WRAPPER
@@ -45,7 +47,7 @@ int main(int argc, char ** argv) {
 #endif
   vtree->GetEvent(0);
 #ifdef WANT_WRAPPER
-  auto const & vtx = *w_vtx.product();
+  auto const& vtx = *w_vtx.product();
 #endif
   for (std::size_t i = 0ull; i < 3; ++i) {
     std::cout << "i = " << i << "; id = " << vtx[i].id << std::endl;

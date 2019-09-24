@@ -14,10 +14,11 @@
 namespace {
   enum class SeverityLevel { kInfo, kWarning, kError, kSysError, kFatal };
 
-  void rootErrorHandler(int const level,
-                        bool die,
-                        char const* location,
-                        char const* message)
+  void
+  rootErrorHandler(int const level,
+                   bool die,
+                   char const* location,
+                   char const* message)
   {
     auto const npos = std::string::npos;
     // auto const npos = std::string::npos;
@@ -150,16 +151,17 @@ namespace {
     } else {
       std::cerr << el_location << ": " << el_message << "\n";
     }
-
   }
 
 }
 
-void arttest::setupRoot() {
+void
+arttest::setupRoot()
+{
   gSystem->ResetSignals();
   SetErrorHandler(rootErrorHandler);
 
   // ROOT::EnableThreadSafety();
   TTree::SetMaxTreeSize(kMaxLong64);
-  TH1::AddDirectory(kFALSE);  
+  TH1::AddDirectory(kFALSE);
 }
