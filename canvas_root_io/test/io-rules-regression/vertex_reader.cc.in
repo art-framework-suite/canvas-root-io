@@ -16,8 +16,7 @@
 #include <string>
 
 int
-main(int argc, char** argv)
-{
+main(int argc, char** argv) try {
   arttest::setupRoot();
   std::string fileName;
   if (argc == 2) {
@@ -55,5 +54,7 @@ main(int argc, char** argv)
     std::cout << "cov = \n" << vtx[i].cov << std::endl;
   }
   hfile.Close();
-  return 0;
+}
+catch (...) {
+  return 1;
 }

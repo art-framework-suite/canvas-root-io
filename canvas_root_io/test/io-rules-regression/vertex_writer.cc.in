@@ -78,6 +78,6 @@ main(int argc, char** argv)
     if (!fileName.empty()) {
       unlink(fileName.c_str());
     }
-    throw;
+    return 1;
   }
 }
