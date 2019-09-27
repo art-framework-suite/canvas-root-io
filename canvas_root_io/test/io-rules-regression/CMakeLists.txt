@@ -52,9 +52,9 @@
 
 set(ROOT_FIXED_GENERAL_IO_RULES FALSE CACHE BOOL
   "Whether we should expect general nested I/O tests to succeed (v11)")
-set(ROOT_FIXED_DOUBLE32T FALSE CACHE BOOL
+set(ROOT_FIXED_DOUBLE32T TRUE CACHE BOOL
   "Whether we should expect specific no-read-rule double -> Double32_t \
-tests to succeed (v11)")
+tests to succeed (v11a)")
 
 set(WANT_XML_READRULES TRUE) # Customize as necessary in subdirectories.
 set(WANT_XML_READRULES_CDATA TRUE) # Customize as necessary in subdirectories.

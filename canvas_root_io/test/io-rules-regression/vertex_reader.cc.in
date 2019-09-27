@@ -54,6 +54,7 @@ main(int argc, char** argv) try {
     std::cout << "cov = \n" << vtx[i].cov << std::endl;
   }
   hfile.Close();
+  return 0;
 }
 catch (...) {
   return 1;
