@@ -4,6 +4,11 @@
 #
 # Produce a tarball.
 ########################################################################
+prog=${BASH_SOURCE[0]##*/}
+
+(return 0 2>/dev/null) && \
+  { echo "ERROR: $prog should be executed, not sourced." 1>&2; return 1; }
+
 set -e
 script_dir="$(dirname $(realpath "${BASH_SOURCE[0]}"))"
 dirname="$(basename "${script_dir}")"

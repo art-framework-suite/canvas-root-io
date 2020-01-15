@@ -4,6 +4,10 @@
 #
 # Generate and build the dictionary required to demonstrate the issue.
 ########################################################################
+prog=${BASH_SOURCE[0]##*/}
+
+(return 0 2>/dev/null) && \
+  { echo "ERROR: $prog should be executed, not sourced." 1>&2; return 1; }
 
 # Fail on command error.
 set -e
