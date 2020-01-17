@@ -8,15 +8,15 @@ This directory contains the minimal reproducer for the bug described at https://
 
 * `00README.md`
   This file.
-* `bad.i`
-  A partially-pre-processed file demonstrating the issue. See `gen/`, below.
+* `bad.h`
+  A simple header file demonstrating the issue.
 * `buildit.sh`
   Generate and build the dictionary required to demonstrate the issue.
 * `classes.h`
   `classes_def.xml`
   Files required to generate the dictionary.
 * `gen/`
-  Directory containing scripts and associated files to regenerate `bad.i`. See `gen/00README.md` for more details.
+  Directory containing scripts and associated files to regenerate `bad.h`. See `gen/00README.md` for more details.
 * `runit.sh`
   Script to reproduce the issue by invoking ROOT. Provide an (arbitrary) argument to tell the script to pre-load the dictionary before attempting to `#include "bad.h"`. Requires access to a ROOT built with the same compiler and standard used in `buildit.sh`.
 * `tidy.sh`
