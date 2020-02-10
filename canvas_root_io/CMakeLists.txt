@@ -11,7 +11,7 @@ cet_make(LIBRARY_NAME canvas_root_io
   Utilities
   LIBRARIES
   MF_MessageLogger
-  ${ROOT_CORE}
+  ROOT::Core
   canvas
   hep_concurrency
   fhiclcpp
