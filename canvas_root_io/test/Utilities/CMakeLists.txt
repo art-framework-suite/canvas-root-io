@@ -1,5 +1,7 @@
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib NO_INSTALL)
 
+find_package(ROOT QUIET REQUIRED COMPONENTS Tree MathCore Core RIO Hist Matrix)
+
 cet_make_exec(TypeNameBranchName_t
   NO_INSTALL
   LIBRARIES
@@ -31,13 +33,10 @@ endforeach()
 cet_test(RootClassMapping_t USE_BOOST_UNIT
   LIBRARIES
   canvas_root_io_test_Utilities_dict
-  ${ROOT_CINTEX}
-  ROOT::Tree
-  ROOT::MathCore
-  ROOT::RIO
-  ROOT::Core
-  ${ROOT_CINT}
-  ${ROOT_REFLEX}
+  ${ROOT_Tree_LIBRARY}
+  ${ROOT_MathCore_LIBRARY}
+  ${ROOT_RIO_LIBRARY}
+  ${ROOT_Core_LIBRARY}
   ${CMAKE_DL_LIBS}
   # When ROOT is fixed WILL_FAIL should be removed and the code in ASSNS
   # (and associated ioread rules) should be fixed accordingly.

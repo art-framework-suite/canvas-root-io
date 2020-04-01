@@ -1,5 +1,7 @@
 include(CetMake)
 
+find_package(ROOT QUIET REQUIRED COMPONENTS Core)
+
 # cmake will automatically order the library builds according to declared dependencies
 add_subdirectory(Dictionaries)
 add_subdirectory(Streamers)
@@ -17,7 +19,8 @@ cet_make(LIBRARY_NAME canvas_root_io
   fhiclcpp
   cetlib
   cetlib_except
-  ${CLHEP}
+  CLHEP::Matrix
+  CLHEP::Vector
   NO_DICTIONARY
   )
 
