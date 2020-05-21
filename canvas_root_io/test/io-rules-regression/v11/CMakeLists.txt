@@ -16,6 +16,13 @@ foreach(WRAPPED "" "wrapped_")
 
   set_property(TEST
     ${WRAPPED}vertex_v11_r_v10
+    APPEND
+    PROPERTY
+    ENVIRONMENT ROOT_INCLUDE_PATH=${v11_ROOT_INCLUDE_PATH}
+    )
+
+  set_property(TEST
+    ${WRAPPED}vertex_v11_r_v10
     PROPERTY
     DEPENDS ${WRAPPED}vertex_v10_w
     )
