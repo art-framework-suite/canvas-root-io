@@ -1,5 +1,5 @@
 #define BOOST_TEST_MODULE(RootClassMapping_t)
-#include "boost/test/output_test_stream.hpp"
+#include "boost/test/tools/output_test_stream.hpp"
 #include "cetlib/quiet_unit_test.hpp"
 
 using boost::test_tools::output_test_stream;
