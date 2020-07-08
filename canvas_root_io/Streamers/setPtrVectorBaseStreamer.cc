@@ -5,6 +5,8 @@
 #include "TBuffer.h"
 #include "TClass.h"
 
+#include <cassert>
+
 TClassStreamer*
 art::detail::PtrVectorBaseStreamer::Generate() const
 {
@@ -34,5 +36,7 @@ art::detail::setPtrVectorBaseStreamer()
   TClass* cl = TClass::GetClass(typeid(PtrVectorBase));
   if (cl->GetStreamer() == 0) {
     cl->AdoptStreamer(new PtrVectorBaseStreamer);
+    auto const canSplit [[gnu::unused]] = cl->CanSplit();
+    assert(!canSplit && "PtrVectorBase should not be splittable!");
   }
 }
