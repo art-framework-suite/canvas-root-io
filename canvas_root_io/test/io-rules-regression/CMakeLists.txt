@@ -76,15 +76,15 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   cet_report_compiler_flags()
 
   # Find and use ROOT.
-  find_package(ROOT REQUIRED COMPONENTS)
-  include_directories(${ROOT_INCLUDE_DIRS} ${ROOT_INCLUDE_DIRS}/ROOT)
+  cet_find_package(ROOT REQUIRED COMPONENTS)
+  include_directories(${ROOT_INCLUDE_DIRS} ${ROOT_INCLUDE_DIRS}/ROOT) ### MIGRATE-ACTION-RECOMMENDED: use target_link_directories() with target semantics
   # Learn how to make dictionaries, executables, tests.
   include (BuildDictionary)
   include (CetMake)
   include (CetTest)
 endif()
 
-find_package(ROOT REQUIRED COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree)
+cet_find_package(ROOT REQUIRED COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree)
 
 set(VERTEX_SOURCE_IN_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE STRING "Location of configurable Vertex source.")
 set(VERTEX_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE STRING "Location of configured Vertex source.")
@@ -158,7 +158,7 @@ function(vertex_tests VERTEX_VERSION)
   endif()
   configure_vertex(${VERTEX_VERSION})
 
-  include_directories(${VERTEX_SOURCE_IN_DIR} ${VERTEX_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+  include_directories(${VERTEX_SOURCE_IN_DIR} ${VERTEX_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}) ### MIGRATE-ACTION-RECOMMENDED: use target_link_directories() with target semantics
 
   set(v${VERTEX_VERSION}_ROOT_INCLUDE_PATH
     ${CMAKE_CURRENT_FUNCTION_LIST_DIR}:${CMAKE_CURRENT_BINARY_DIR}:$ENV{ROOT_INCLUDE_PATH})
@@ -171,11 +171,17 @@ function(vertex_tests VERTEX_VERSION)
 
   message(STATUS "v${VERTEX_VERSION}_ROOT_INCLUDE_PATH=${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}")
 
+  if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(varname_prefix DY)
+  else()
+    unset(varname_prefix)
+  endif()
+
   build_dictionary(DICT_NAME_VAR dictname NO_INSTALL
     CLASSES_DEF_XML ${CMAKE_CURRENT_BINARY_DIR}/classes_def.xml
     CLASSES_H ${CMAKE_CURRENT_SOURCE_DIR}/../classes.h
     CCV_ENVIRONMENT
-    "LD_LIBRARY_PATH=$ENV{LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}"
+    "${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}"
     "ROOT_INCLUDE_PATH=${CMAKE_CURRENT_FUNCTION_LIST_DIR}:${CMAKE_CURRENT_BINARY_DIR}:$ENV{ROOT_INCLUDE_PATH}"
     )
 
@@ -213,7 +219,7 @@ function(vertex_tests VERTEX_VERSION)
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_r
         PROPERTY ENVIRONMENT
-        LD_LIBRARY_PATH=$ENV{LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR})
+        ${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR})
 
       set_property(TEST
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w

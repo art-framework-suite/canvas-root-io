@@ -5,7 +5,7 @@ add_subdirectory(Dictionaries)
 add_subdirectory(Streamers)
 add_subdirectory(Utilities)
 
-cet_make(LIBRARY_NAME canvas_root_io
+cet_make(LIBRARY_NAME canvas_root_io ### MIGRATE-ACTION-RECOMMENDED: use cet_make_library(), build_dictionary(), basic_plugin() with explicit source lists
   SUBDIRS
   Streamers
   Utilities
