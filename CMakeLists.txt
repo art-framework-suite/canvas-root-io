@@ -20,11 +20,11 @@ cmake_policy(SET CMP0096 NEW)
 find_package(cetmodules 2.02.01 REQUIRED)
 project(canvas_root_io VERSION 1.06.02 LANGUAGES CXX)
 
-# Find our own modules.
-list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Modules) ### MIGRATE-NO-ACTION
-
 include(CetCMakeEnv)
 cet_cmake_env()
+
+# Find our own CMake modules, and tell everyone else where to find them.
+cet_cmake_module_directories(Modules)
 
 cet_set_compiler_flags(DIAGS VIGILANT
   WERROR
@@ -93,5 +93,4 @@ add_subdirectory(Modules)
 add_subdirectory(tools)
 
 # packaging utility
-cet_cmake_config(COMPATIBILITY SameMajorVersion
-  CONFIG_POST_VARS config/${PROJECT_NAME}-config-module-path.cmake.in)
+cet_cmake_config(COMPATIBILITY SameMajorVersion)
