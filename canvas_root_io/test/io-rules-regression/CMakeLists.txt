@@ -195,7 +195,7 @@ function(vertex_tests VERTEX_VERSION)
       foreach(stem reader writer)
         configure_file(${VERTEX_SOURCE_IN_DIR}/vertex_${stem}.cc.in
           ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc @ONLY)
-        cet_make_exec(${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
+        cet_make_exec(NAME ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
           SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc
           LIBRARIES ${VERTEX_LIBRARIES})
 

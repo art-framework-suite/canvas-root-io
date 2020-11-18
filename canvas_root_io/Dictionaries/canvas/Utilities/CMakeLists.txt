@@ -1,1 +1,1 @@
-art_dictionary(DICTIONARY_LIBRARIES canvas)
+art_dictionary()

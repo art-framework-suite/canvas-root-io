@@ -1,11 +1,9 @@
-art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib NO_INSTALL)
+art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib::cetlib NO_INSTALL)
 
-cet_make_exec(TypeNameBranchName_t
+cet_make_exec(NAME TypeNameBranchName_t
   NO_INSTALL
   LIBRARIES
-  canvas
-  cetlib
-  cetlib_except
+  canvas::canvas
 )
 
 set(tnum 1)
@@ -30,14 +28,11 @@ endforeach()
 
 cet_test(RootClassMapping_t USE_BOOST_UNIT
   LIBRARIES
-  canvas_root_io_test_Utilities_dict
-  ${ROOT_CINTEX}
+  canvas_root_io::canvas_root_io_test_Utilities_dict
   ROOT::Tree
   ROOT::MathCore
   ROOT::RIO
   ROOT::Core
-  ${ROOT_CINT}
-  ${ROOT_REFLEX}
   ${CMAKE_DL_LIBS}
   # When ROOT is fixed WILL_FAIL should be removed and the code in ASSNS
   # (and associated ioread rules) should be fixed accordingly.
@@ -46,21 +41,20 @@ cet_test(RootClassMapping_t USE_BOOST_UNIT
 
 cet_test(TypeTools_t USE_BOOST_UNIT
   LIBRARIES
-  canvas_root_io
+  canvas_root_io::canvas_root_io
   ROOT::Tree
   ROOT::Hist
   ROOT::Matrix
   ROOT::MathCore
   ROOT::RIO
   ROOT::Core
-  ${ROOT_CINT}
-  ${ROOT_REFLEX}
   ${CMAKE_DL_LIBS}
   )
 
 cet_test(TypeWithDict_t USE_BOOST_UNIT
   LIBRARIES
-  canvas_root_io
+  canvas_root_io::canvas_root_io
+  cetlib::cetlib
   ROOT::Core
   )
 
