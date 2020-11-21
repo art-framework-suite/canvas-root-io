@@ -7,7 +7,7 @@ cet_make_exec(NAME TypeNameBranchName_t
 )
 
 set(tnum 1)
-foreach(types_file
+foreach(types_file IN ITEMS
     art_test_types.txt
     microboone_MC6.txt
     mu2e.txt

@@ -3,7 +3,7 @@ set(WANT_TCLASS_READRULES TRUE)
 
 vertex_tests(11 b)
 
-foreach(WRAPPED "" "wrapped_")
+foreach(WRAPPED IN ITEMS "" "wrapped_")
   cet_test(${WRAPPED}vertex_v11_r_v10_b HANDBUILT
     TEST_EXEC ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v11b_reader
     TEST_ARGS ../../v10/${WRAPPED}vertex_v10_w.d/${WRAPPED}vertex_v10.root
