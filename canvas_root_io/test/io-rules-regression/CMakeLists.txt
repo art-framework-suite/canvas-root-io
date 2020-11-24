@@ -70,14 +70,11 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     )
   include(CetCMakeEnv)
   cet_cmake_env()
-  cet_set_compiler_flags(DIAGS VIGILANT
-    WERROR NO_UNDEFINED
-    EXTRA_CXX_FLAGS -Wnon-virtual-dtor -Wdelete-non-virtual-dtor)
+  cet_set_compiler_flags(DIAGS VIGILANT WERROR NO_UNDEFINED)
   cet_report_compiler_flags()
 
   # Find and use ROOT.
   cet_find_package(ROOT REQUIRED COMPONENTS)
-  include_directories(${ROOT_INCLUDE_DIRS} ${ROOT_INCLUDE_DIRS}/ROOT) ### MIGRATE-ACTION-RECOMMENDED: use target_link_directories() with target semantics
   # Learn how to make dictionaries, executables, tests.
   include (BuildDictionary)
   include (CetMake)
@@ -139,13 +136,13 @@ endfunction()
 
 
 set(WANTED_ROOT_LIBRARIES
-  ${ROOT_Tree_LIBRARY}
-  ${ROOT_Hist_LIBRARY}
-  ${ROOT_RIO_LIBRARY}
-  ${ROOT_Smatrix_LIBRARY}
-  ${ROOT_GenVector_LIBRARY}
-  ${ROOT_MathCore_LIBRARY}
-  ${ROOT_Core_LIBRARY}
+  ROOT::Tree
+  ROOT::Hist
+  ROOT::RIO
+  ROOT::Smatrix
+  ROOT::GenVector
+  ROOT::MathCore
+  ROOT::Core
 )
 
 set(VERTEX_LIBRARIES
@@ -157,8 +154,6 @@ function(vertex_tests VERTEX_VERSION)
     string(REPLACE ";" "_" SUFFIX "${ARGN}")
   endif()
   configure_vertex(${VERTEX_VERSION})
-
-  include_directories(${VERTEX_SOURCE_IN_DIR} ${VERTEX_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}) ### MIGRATE-ACTION-RECOMMENDED: use target_link_directories() with target semantics
 
   set(v${VERTEX_VERSION}_ROOT_INCLUDE_PATH
     ${CMAKE_CURRENT_FUNCTION_LIST_DIR}:${CMAKE_CURRENT_BINARY_DIR}:$ENV{ROOT_INCLUDE_PATH})
@@ -185,10 +180,11 @@ function(vertex_tests VERTEX_VERSION)
     "ROOT_INCLUDE_PATH=${CMAKE_CURRENT_FUNCTION_LIST_DIR}:${CMAKE_CURRENT_BINARY_DIR}:$ENV{ROOT_INCLUDE_PATH}"
     )
 
-  set_property(TARGET
-    ${dictname}_dict
-    PROPERTY LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    )
+  set_target_properties(${dictname}_dict
+    PROPERTIES
+      LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      INCLUDE_DIRECTORIES "${VERTEX_SOURCE_IN_DIR};${VERTEX_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}"
+  )
 
   if (NOT TARGET ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_writer)
     foreach(WRAPPED IN ITEMS "" "wrapped_")
@@ -198,10 +194,12 @@ function(vertex_tests VERTEX_VERSION)
         cet_make_exec(NAME ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
           SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc
           LIBRARIES ${VERTEX_LIBRARIES})
+        set_target_properties(${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
+          PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            INCLUDE_DIRECTORIES "${VERTEX_SOURCE_IN_DIR};${VERTEX_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}"
+         )
 
-        set_property(TARGET
-          ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
-          PROPERTY RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
       endforeach()
 
       cet_test(${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w HANDBUILT
@@ -238,7 +236,7 @@ endfunction()
 
 cet_make_library(LIBRARY_NAME art_root_io_test_io_rules_regression
   SOURCE setupRoot.cc
-  LIBRARIES ${WANTED_ROOT_LIBRARIES}
+  LIBRARIES PRIVATE ${WANTED_ROOT_LIBRARIES}
   NO_INSTALL)
 
 # Schema evolution
