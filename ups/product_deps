@@ -160,6 +160,7 @@ defaultqual	e19
 #     FW_SEARCH_PATH; may be specified multiple times.
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
 #>  set_wpdir
 #
 #     An additional location for wirecell data to be added to
