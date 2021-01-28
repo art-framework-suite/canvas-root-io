@@ -5,20 +5,25 @@ add_subdirectory(Dictionaries)
 add_subdirectory(Streamers)
 add_subdirectory(Utilities)
 
-cet_make(LIBRARY_NAME canvas_root_io
-  SUBDIRS
-  Streamers
-  Utilities
+cet_make_library(
+  LIBRARY_NAME canvas_root_io
+  SOURCE
+    Streamers/setPtrVectorBaseStreamer.cc
+    Streamers/TransientStreamer.cc
+    Streamers/ProductIDStreamer.cc
+    Streamers/BranchDescriptionStreamer.cc
+    Streamers/CacheStreamers.cc
+    Streamers/RefCoreStreamer.cc
+    Utilities/DictionaryChecker.cc
+    Utilities/getWrapperTIDs.cc
+    Utilities/TypeWithDict.cc
+    Utilities/TypeTools.cc
   LIBRARIES
-  MF_MessageLogger
-  ROOT::Core
-  canvas
-  hep_concurrency
-  fhiclcpp
-  cetlib
-  cetlib_except
-  ${CLHEP}
-  NO_DICTIONARY
+    ROOT::Core
+    canvas::canvas
+  PRIVATE
+    CLHEP::CLHEP
+    messagefacility::MF_MessageLogger
   )
 
 # Testing

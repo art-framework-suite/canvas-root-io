@@ -2,7 +2,7 @@ set(WANT_XML_READRULES FALSE)
 
 vertex_tests(11)
 
-foreach(WRAPPED "" "wrapped_")
+foreach(WRAPPED IN ITEMS "" "wrapped_")
   cet_test(${WRAPPED}vertex_v11_r_v10_a HANDBUILT
     TEST_EXEC ${CMAKE_CURRENT_BINARY_DIR}/../v11/${WRAPPED}vertex_v11_reader
     TEST_ARGS ../../v10/${WRAPPED}vertex_v10_w.d/${WRAPPED}vertex_v10.root
@@ -13,7 +13,7 @@ foreach(WRAPPED "" "wrapped_")
   set_property(TEST
     ${WRAPPED}vertex_v11_r_v10_a
     PROPERTY
-    ENVIRONMENT LD_LIBRARY_PATH=$ENV{LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}
+    ENVIRONMENT ${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}
     )
 
   set_property(TEST
