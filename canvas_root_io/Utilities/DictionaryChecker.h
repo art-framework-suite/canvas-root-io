@@ -3,21 +3,18 @@
 // vim: set sw=2 expandtab :
 
 #include "canvas/Utilities/TypeID.h"
-#include "hep_concurrency/RecursiveMutex.h"
 
+#include <mutex>
 #include <set>
 #include <string>
 #include <vector>
 
-namespace art {
-  namespace root {
-    class DictionaryChecker;
-  }
+namespace art::root {
+  class DictionaryChecker;
 }
 
 /// Manage recursive checking of dictionary information for data products.
 class art::root::DictionaryChecker {
-
 public:
   /// Check dictionaries (optionally recursively) for named type.
   void checkDictionaries(std::string const& name_orig,
@@ -41,7 +38,7 @@ private:
   // Member Data -- Implementation details.
 private:
   // Protects all data members.
-  mutable hep::concurrency::RecursiveMutex mutex_{"DictionaryChecker::mutex_"};
+  mutable std::recursive_mutex mutex_{};
   std::set<std::string> checked_names_;
   std::set<std::string> missing_types_;
 };
@@ -51,7 +48,7 @@ void
 art::root::DictionaryChecker::checkDictionaries(bool const recursive,
                                                 std::size_t const level)
 {
-  hep::concurrency::RecursiveMutexSentry sentry{mutex_, __func__};
+  std::lock_guard sentry{mutex_};
   checkDictionaries(TypeID{typeid(T)}.className(), recursive, level);
 }
 

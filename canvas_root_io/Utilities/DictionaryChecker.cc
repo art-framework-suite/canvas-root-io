@@ -6,7 +6,6 @@
 #include "canvas_root_io/Utilities/TypeTools.h"
 #include "canvas_root_io/Utilities/TypeWithDict.h"
 #include "cetlib_except/demangle.h"
-#include "hep_concurrency/RecursiveMutex.h"
 
 #include "TBaseClass.h"
 #include "TClass.h"
@@ -301,7 +300,7 @@ art::root::DictionaryChecker::checkDictionaries(string const& name_orig,
 vector<string>
 art::root::DictionaryChecker::typesMissingDictionaries()
 {
-  hep::concurrency::RecursiveMutexSentry sentry{mutex_, __func__};
+  std::lock_guard sentry{mutex_};
   vector<string> result;
   for (auto const& mt : missing_types_) {
     result.emplace_back(cet::demangle_symbol(mt));
@@ -315,7 +314,7 @@ art::root::DictionaryChecker::typesMissingDictionaries()
 void
 art::root::DictionaryChecker::reportMissingDictionaries()
 {
-  hep::concurrency::RecursiveMutexSentry sentry{mutex_, __func__};
+  std::lock_guard sentry{mutex_};
   if (missing_types_.empty()) {
     return;
   }

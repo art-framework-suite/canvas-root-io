@@ -4,7 +4,6 @@
 #include "canvas/Utilities/FriendlyName.h"
 #include "canvas/Utilities/TypeID.h"
 #include "canvas/Utilities/uniform_type_name.h"
-#include "hep_concurrency/RecursiveMutex.h"
 
 #include "TClass.h"
 #include "TDataType.h"
@@ -13,8 +12,8 @@
 #include "TROOT.h"
 
 #include <map>
+#include <mutex>
 #include <ostream>
-//#include <mutex>
 #include <string>
 #include <typeinfo>
 #include <utility>
@@ -353,10 +352,9 @@ namespace art {
   root::TypeWithDict::dictFromName_(string const& name)
   {
     TDictionary* result = nullptr;
-    static hep::concurrency::RecursiveMutex s_mutex{
-      "TypeWithDict::dfn::s_mutex"};
+    static std::recursive_mutex s_mutex{};
     static map<string, TDictionary*> s_nameToDict;
-    hep::concurrency::RecursiveMutexSentry sentry{s_mutex, __func__};
+    std::lock_guard sentry{s_mutex};
     auto I = s_nameToDict.find(name);
     if (I != s_nameToDict.end()) {
       result = I->second;
