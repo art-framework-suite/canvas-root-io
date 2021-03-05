@@ -192,7 +192,7 @@ function(vertex_tests VERTEX_VERSION)
       foreach(stem IN ITEMS reader writer)
         configure_file(${VERTEX_SOURCE_IN_DIR}/vertex_${stem}.cc.in
           ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc @ONLY)
-        cet_make_exec(NAME ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
+        cet_make_exec(NAME ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem} NO_INSTALL
           SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc
           LIBRARIES ${VERTEX_LIBRARIES})
         set_target_properties(${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
@@ -236,9 +236,8 @@ function(vertex_tests VERTEX_VERSION)
 endfunction()
 
 cet_make_library(LIBRARY_NAME art_root_io_test_io_rules_regression
-  SOURCE setupRoot.cc
-  LIBRARIES PRIVATE ${WANTED_ROOT_LIBRARIES}
-  NO_INSTALL)
+  NO_INSTALL SOURCE setupRoot.cc
+  LIBRARIES PRIVATE ${WANTED_ROOT_LIBRARIES})
 
 # Schema evolution
 add_subdirectory(v10)
