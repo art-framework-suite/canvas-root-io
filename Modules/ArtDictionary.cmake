@@ -1,7 +1,7 @@
 ########################################################################
 # art_dictionary
 #
-#   Wrapper around cetbuildtools' build_dictionary featuring the ### MIGRATE-ACTION-REQUIRED: remove
+#   Wrapper around cetmodules' build_dictionary featuring the
 #   addition of commonly required libraries to the dictionary library
 #   link list.
 #
