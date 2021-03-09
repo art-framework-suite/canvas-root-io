@@ -21,17 +21,11 @@ foreach(WRAPPED IN ITEMS "" "wrapped_")
     ENVIRONMENT ROOT_INCLUDE_PATH=${v11_ROOT_INCLUDE_PATH}
     )
 
-  set_property(TEST
-    ${WRAPPED}vertex_v11_r_v10
-    PROPERTY
-    DEPENDS ${WRAPPED}vertex_v10_w
-    )
+  set_property(TEST ${WRAPPED}vertex_v11_r_v10 PROPERTY
+    DEPENDS ${WRAPPED}vertex_v10_w)
 
   if (NOT ROOT_FIXED_GENERAL_IO_RULES)
-    set_property(TEST
-      ${WRAPPED}vertex_v11_r_v10
-      PROPERTY
-      WILL_FAIL TRUE
-      )
+    set_property(TEST ${WRAPPED}vertex_v11_r_v10 PROPERTY
+      WILL_FAIL TRUE)
   endif()
 endforeach()

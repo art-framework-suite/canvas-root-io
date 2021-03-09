@@ -1,12 +1,20 @@
+cet_find_package(Boost PRIVATE COMPONENTS headers thread REQUIRED)
+cet_find_package(CLHEP PRIVATE COMPONENTS Matrix Vector REQUIRED)
+cet_find_package(ROOT COMPONENTS Core REQUIRED)
+cet_find_package(canvas REQUIRED)
+cet_find_package(cetlib REQUIRED)
+cet_find_package(cetlib_except PRIVATE REQUIRED)
+cet_find_package(fhiclcpp PRIVATE REQUIRED)
+cet_find_package(hep_concurrency REQUIRED)
+cet_find_package(messagefacility PRIVATE REQUIRED)
+
 include(CetMake)
 
-# cmake will automatically order the library builds according to declared dependencies
 add_subdirectory(Dictionaries)
 add_subdirectory(Streamers)
 add_subdirectory(Utilities)
 
-cet_make_library(
-  LIBRARY_NAME canvas_root_io
+cet_make_library(HEADERS_TARGET
   SOURCE
     Streamers/setPtrVectorBaseStreamer.cc
     Streamers/TransientStreamer.cc
@@ -19,12 +27,16 @@ cet_make_library(
     Utilities/TypeWithDict.cc
     Utilities/TypeTools.cc
   LIBRARIES
-    ROOT::Core
     canvas::canvas
+    cetlib::cetlib
+    hep_concurrency::hep_concurrency
+    ROOT::Core
   PRIVATE
-    CLHEP::CLHEP
     messagefacility::MF_MessageLogger
-  )
+    cetlib::container_algorithms
+    cetlib_except::cetlib_except
+    Boost::thread
+)
 
 # Testing
 add_subdirectory(test)

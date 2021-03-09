@@ -11,22 +11,13 @@ foreach(WRAPPED IN ITEMS "" "wrapped_")
     REF ${CMAKE_CURRENT_SOURCE_DIR}/../vertex-ref.txt
     )
 
-  set_property(TEST
-    ${WRAPPED}vertex_v11_r_v10_b
-    PROPERTY
+  set_property(TEST ${WRAPPED}vertex_v11_r_v10_b PROPERTY
     ENVIRONMENT ${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}
     )
 
-  set_property(TEST
-    ${WRAPPED}vertex_v11_r_v10_b
-    APPEND
-    PROPERTY
-    ENVIRONMENT ROOT_INCLUDE_PATH=${v11_ROOT_INCLUDE_PATH}
-    )
+  set_property(TEST ${WRAPPED}vertex_v11_r_v10_b APPEND PROPERTY
+    ENVIRONMENT ROOT_INCLUDE_PATH=${v11_ROOT_INCLUDE_PATH})
 
-  set_property(TEST
-    ${WRAPPED}vertex_v11_r_v10_b
-    PROPERTY
-    DEPENDS ${WRAPPED}vertex_v10_w
-    )
+  set_property(TEST ${WRAPPED}vertex_v11_r_v10_b PROPERTY
+    DEPENDS ${WRAPPED}vertex_v10_w)
 endforeach()

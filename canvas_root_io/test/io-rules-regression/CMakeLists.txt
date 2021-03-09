@@ -61,27 +61,28 @@ set(WANT_XML_READRULES_CDATA TRUE) # Customize as necessary in subdirectories.
 
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   # Using in (almost) standalone mode
-  cmake_minimum_required(VERSION 3.11..3.14 FATAL_ERROR)
+  cmake_minimum_required(VERSION 3.19...3.20 FATAL_ERROR)
   project(io_rules_regression_tests VERSION 1.00.00 LANGUAGES CXX)
 
   # Find and use cetmodules.
-  find_package(cetmodules
-    1.03.00 REQUIRED # For build_dictionary supporting CLASSES_* opts.
-    )
+  find_package(cetmodules 2.13.00 REQUIRED)
   include(CetCMakeEnv)
   cet_cmake_env()
   cet_set_compiler_flags(DIAGS VIGILANT WERROR NO_UNDEFINED)
   cet_report_compiler_flags()
 
   # Find and use ROOT.
-  cet_find_package(ROOT REQUIRED COMPONENTS)
+  cet_find_package(ROOT PRIVATE REQUIRED COMPONENTS)
   # Learn how to make dictionaries, executables, tests.
   include (BuildDictionary)
   include (CetMake)
   include (CetTest)
 endif()
 
-cet_find_package(ROOT REQUIRED COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree)
+cet_find_package(ROOT PRIVATE
+  COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree
+  REQUIRED
+)
 
 set(VERTEX_SOURCE_IN_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE STRING "Location of configurable Vertex source.")
 set(VERTEX_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE STRING "Location of configured Vertex source.")
@@ -158,13 +159,13 @@ function(vertex_tests VERTEX_VERSION)
   set(v${VERTEX_VERSION}_ROOT_INCLUDE_PATH
     ${CMAKE_CURRENT_FUNCTION_LIST_DIR}:${CMAKE_CURRENT_BINARY_DIR}:$ENV{ROOT_INCLUDE_PATH})
 
-  message(STATUS "v${VERTEX_VERSION}_ROOT_INCLUDE_PATH=${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}")
+  message(DEBUG "v${VERTEX_VERSION}_ROOT_INCLUDE_PATH=${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}")
 
   set(v${VERTEX_VERSION}_ROOT_INCLUDE_PATH
     ${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}
     PARENT_SCOPE)
 
-  message(STATUS "v${VERTEX_VERSION}_ROOT_INCLUDE_PATH=${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}")
+  message(DEBUG "v${VERTEX_VERSION}_ROOT_INCLUDE_PATH=${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}")
 
   if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
     set(varname_prefix DY)
@@ -191,7 +192,7 @@ function(vertex_tests VERTEX_VERSION)
       foreach(stem IN ITEMS reader writer)
         configure_file(${VERTEX_SOURCE_IN_DIR}/vertex_${stem}.cc.in
           ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc @ONLY)
-        cet_make_exec(NAME ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
+        cet_make_exec(NAME ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem} NO_INSTALL
           SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}.cc
           LIBRARIES ${VERTEX_LIBRARIES})
         set_target_properties(${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_${stem}
@@ -235,9 +236,8 @@ function(vertex_tests VERTEX_VERSION)
 endfunction()
 
 cet_make_library(LIBRARY_NAME art_root_io_test_io_rules_regression
-  SOURCE setupRoot.cc
-  LIBRARIES PRIVATE ${WANTED_ROOT_LIBRARIES}
-  NO_INSTALL)
+  NO_INSTALL SOURCE setupRoot.cc
+  LIBRARIES PRIVATE ${WANTED_ROOT_LIBRARIES})
 
 # Schema evolution
 add_subdirectory(v10)

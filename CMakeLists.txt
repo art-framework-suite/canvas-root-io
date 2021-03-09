@@ -13,8 +13,8 @@
 # ======================================================================
 cmake_minimum_required(VERSION 3.18.2 FATAL_ERROR)
 
-find_package(cetmodules 2.04.00 REQUIRED)
-project(canvas_root_io VERSION 1.08.00 LANGUAGES CXX)
+find_package(cetmodules 2.13.00 REQUIRED)
+project(canvas_root_io VERSION 1.09.00 LANGUAGES CXX)
 
 include(CetCMakeEnv)
 cet_cmake_env()
@@ -48,15 +48,6 @@ endif()
 
 cet_report_compiler_flags(REPORT_THRESHOLD VERBOSE)
 
-cet_find_package(canvas REQUIRED)
-cet_find_package(CLHEP)
-cet_find_package(cetlib_except REQUIRED)
-cet_find_package(cetlib REQUIRED)
-cet_find_package(fhiclcpp REQUIRED)
-cet_find_package(messagefacility REQUIRED)
-find_ups_root()
-cet_find_package(Boost REQUIRED)
-
 # art_dictionary
 include(ArtDictionary)
 
@@ -72,4 +63,4 @@ add_subdirectory(Modules)
 add_subdirectory(tools)
 
 # packaging utility
-cet_cmake_config(COMPATIBILITY SameMajorVersion)
+cet_cmake_config()

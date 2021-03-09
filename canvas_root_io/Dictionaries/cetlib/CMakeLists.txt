@@ -1,3 +1,3 @@
-art_dictionary(NO_CHECK_CLASS_VERSION)
+art_dictionary()
 
 install_source()

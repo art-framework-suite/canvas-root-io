@@ -27,7 +27,7 @@ endforeach()
 
 cet_test(RootClassMapping_t USE_BOOST_UNIT
   LIBRARIES PRIVATE
-    canvas_root_io::canvas_root_io_test_Utilities_dict
+    canvas_root_io_test::Utilities_dict
     ROOT::Tree
     ROOT::MathCore
     ROOT::RIO

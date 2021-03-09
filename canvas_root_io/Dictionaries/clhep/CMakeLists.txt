@@ -1,3 +1,3 @@
-art_dictionary(DICTIONARY_LIBRARIES CLHEP::CLHEP NO_CHECK_CLASS_VERSION)
+art_dictionary(DICTIONARY_LIBRARIES CLHEP::Matrix CLHEP::Vector)
 
 install_source()
