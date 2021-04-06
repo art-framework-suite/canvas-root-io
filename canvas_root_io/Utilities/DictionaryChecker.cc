@@ -190,15 +190,15 @@ art::root::DictionaryChecker::checkDictionaries(string const& name_orig,
   TypeWithDict ty{name};
   if (ty) {
     switch (ty.category()) {
-      case TypeWithDict::Category::NONE:
-        throw Exception(errors::LogicError, "checkDictionaries: ")
-          << "Type category of name is NONE: " << name << '\n';
-      case TypeWithDict::Category::CLASSTYPE:
-        break; // Continue below.
-      case TypeWithDict::Category::ENUMTYPE:
-        return;
-      case TypeWithDict::Category::BASICTYPE:
-        return;
+    case TypeWithDict::Category::NONE:
+      throw Exception(errors::LogicError, "checkDictionaries: ")
+        << "Type category of name is NONE: " << name << '\n';
+    case TypeWithDict::Category::CLASSTYPE:
+      break; // Continue below.
+    case TypeWithDict::Category::ENUMTYPE:
+      return;
+    case TypeWithDict::Category::BASICTYPE:
+      return;
     }
   }
   auto cl = TClass::GetClass(name.c_str());
