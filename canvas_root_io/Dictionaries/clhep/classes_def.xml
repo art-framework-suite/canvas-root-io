@@ -2,7 +2,8 @@
 <class name="CLHEP::Hep2Vector" ClassVersion="10">
  <version ClassVersion="10" checksum="1182862603"/>
 </class>
-<class name="CLHEP::Hep3Vector" ClassVersion="10">
+<class name="CLHEP::Hep3Vector" ClassVersion="11">
+ <version ClassVersion="11" checksum="3438801427"/>
  <version ClassVersion="10" checksum="3040806103"/>
 </class>
 <class name="CLHEP::HepGenMatrix" ClassVersion="10">
