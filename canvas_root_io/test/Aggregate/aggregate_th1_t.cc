@@ -1,7 +1,7 @@
 #define BOOST_TEST_MODULE (th1Product aggregation Test)
+#include "boost/test/unit_test.hpp"
 #include "canvas_root_io/test/Aggregate/MockRun.h"
 #include "cetlib/container_algorithms.h"
-#include "boost/test/unit_test.hpp"
 
 #include "TH1F.h"
 #include "TH2F.h"
