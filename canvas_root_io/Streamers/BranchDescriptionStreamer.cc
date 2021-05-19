@@ -1,12 +1,15 @@
 #include "canvas_root_io/Streamers/BranchDescriptionStreamer.h"
 #include "canvas/Persistency/Provenance/BranchDescription.h"
+#include "canvas/Utilities/Exception.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
 #include "Compression.h"
 #include "TBuffer.h"
 #include "TClass.h"
-#include "TClassStreamer.h"
 #include "TDictAttributeMap.h"
+
+#include <cstring>
+#include <string>
 
 namespace art {
 

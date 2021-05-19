@@ -2,7 +2,6 @@
 
 #include "TError.h"
 #include "TH1.h"
-#include "TROOT.h"
 #include "TSystem.h"
 #include "TTree.h"
 

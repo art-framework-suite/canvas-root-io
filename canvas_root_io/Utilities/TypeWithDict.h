@@ -4,7 +4,7 @@
 
 #include "canvas/Utilities/TypeID.h"
 
-#include <iosfwd>
+#include <ostream>
 #include <string>
 #include <typeinfo>
 
@@ -71,27 +71,25 @@ private: // MEMBER DATA
   TypeID id_{};
 };
 
-namespace art {
-  namespace root {
+namespace art::root {
 
-    std::string to_string(TypeWithDict::Category category);
+  std::string to_string(TypeWithDict::Category category);
 
-    inline std::ostream&
-    operator<<(std::ostream& os, TypeWithDict::Category category)
-    {
-      os << to_string(category);
-      return os;
-    }
+  inline std::ostream&
+  operator<<(std::ostream& os, TypeWithDict::Category category)
+  {
+    os << to_string(category);
+    return os;
+  }
 
-    inline std::ostream&
-    operator<<(std::ostream& os, TypeWithDict const& ty)
-    {
-      ty.print(os);
-      return os;
-    }
+  inline std::ostream&
+  operator<<(std::ostream& os, TypeWithDict const& ty)
+  {
+    ty.print(os);
+    return os;
+  }
 
-  } // namespace root
-} // namespace art
+} // namespace art::root
 
 // Local Variables:
 // mode: c++

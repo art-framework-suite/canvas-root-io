@@ -12,8 +12,9 @@
 #include "setupRoot.h"
 
 #include <cstdlib>
-#include <memory>
+#include <iostream>
 #include <string>
+#include <vector>
 
 int
 main(int argc, char** argv) try {
@@ -26,10 +27,15 @@ main(int argc, char** argv) try {
     exit(1);
   }
 #ifdef WANT_TCLASS_READRULES
-  TClass::AddRule("sourceClass=\"ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<double>,ROOT::Math::GlobalCoordinateSystemTag>\" "
-                  "targetClass=\"ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<Double32_t>,ROOT::Math::GlobalCoordinateSystemTag>\"");
-  TClass::AddRule("sourceClass=\"ROOT::Math::SMatrix<double,3,3,ROOT::Math::MatRepSym<double,3> >\" "
-                  "targetClass=\"ROOT::Math::SMatrix<Double32_t,3,3,ROOT::Math::MatRepSym<Double32_t,3> >\" ");
+  TClass::AddRule(
+    "sourceClass=\"ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<double>"
+    ",ROOT::Math::GlobalCoordinateSystemTag>\" "
+    "targetClass=\"ROOT::Math::PositionVector3D<ROOT::Math::Cartesian3D<"
+    "Double32_t>,ROOT::Math::GlobalCoordinateSystemTag>\"");
+  TClass::AddRule("sourceClass=\"ROOT::Math::SMatrix<double,3,3,ROOT::Math::"
+                  "MatRepSym<double,3> >\" "
+                  "targetClass=\"ROOT::Math::SMatrix<Double32_t,3,3,ROOT::Math:"
+                  ":MatRepSym<Double32_t,3> >\" ");
 #endif
   TFile hfile(fileName.c_str());
   TTree* vtree = nullptr;

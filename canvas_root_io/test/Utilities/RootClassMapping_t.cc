@@ -7,10 +7,9 @@ using boost::test_tools::output_test_stream;
 #include "RootClassMapping_t.h"
 
 #include <iostream>
-#include <memory>
 #include <string>
+#include <typeinfo>
 
-#include "TBranch.h"
 #include "TClass.h"
 #include "TFile.h"
 #include "TTree.h"

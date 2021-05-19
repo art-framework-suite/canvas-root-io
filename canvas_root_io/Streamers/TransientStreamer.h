@@ -10,10 +10,13 @@
 //
 
 #include "TBuffer.h"
+#include "TClass.h"
 #include "TClassRef.h"
 #include "TClassStreamer.h"
 #include "canvas/Utilities/TypeID.h"
+
 #include <string>
+#include <typeinfo>
 
 namespace art {
 

@@ -5,6 +5,7 @@
 #include "canvas/Utilities/TypeID.h"
 #include "canvas/Utilities/uniform_type_name.h"
 
+#include "RtypesCore.h"
 #include "TClass.h"
 #include "TDataType.h"
 #include "TDictionary.h"

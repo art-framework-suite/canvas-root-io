@@ -1,4 +1,6 @@
 #include "canvas_root_io/Utilities/getWrapperTIDs.h"
+
+#include "canvas/Utilities/WrappedClassName.h"
 #include "canvas_root_io/Utilities/TypeTools.h"
 #include "canvas_root_io/Utilities/TypeWithDict.h"
 

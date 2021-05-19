@@ -1,8 +1,6 @@
 #cmakedefine WANT_WRAPPER
 
-#include "TBranch.h"
 #include "TFile.h"
-#include "TH1.h"
 #include "TTree.h"
 
 #include "Vertex.h"
@@ -15,6 +13,7 @@
 #include <memory>
 #include <string>
 #include <unistd.h>
+#include <vector>
 
 int
 main(int argc, char** argv)
