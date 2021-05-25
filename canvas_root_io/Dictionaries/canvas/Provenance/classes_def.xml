@@ -36,6 +36,20 @@
     <version ClassVersion="11" checksum="3565390397"/>
     <version ClassVersion="10" checksum="2106446510"/>
   </class>
+  <ioread sourceClass="art::FileIndex::Element" version="[-11]"
+          targetClass="art::FileIndex::Element"
+          source="art::EventID eventID_;"
+          target="eventID"
+          include="canvas/Persistency/Provenance/EventID.h">
+    <![CDATA[ eventID = onfile.eventID_; ]]>
+  </ioread>
+  <ioread sourceClass="art::FileIndex::Element" version="[-11]"
+          targetClass="art::FileIndex::Element"
+          source="art::FileIndex::EntryNumber_t entry_;"
+          target="entry"
+          include="canvas/Persistency/Provenance/EventID.h">
+    <![CDATA[ entry = onfile.entry_; ]]>
+  </ioread>
   <class name="std::vector<art::FileIndex::Element>"/>
   <class name="art::FileIndex::Transients"/>
   <class name="std::vector<art::ProcessConfiguration>"/>
