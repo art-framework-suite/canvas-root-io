@@ -6,6 +6,12 @@
  <version ClassVersion="11" checksum="3438801427"/>
  <version ClassVersion="10" checksum="3040806103"/>
 </class>
+<ioread sourceClass="CLHEP::Hep3Vector" version="[-10]"
+        targetClass="CLHEP::Hep3Vector"
+        source="double dx; double dy; double dz;"
+        target="data">
+  <![CDATA[ data[0] = onfile.dx; data[1] = onfile.dy; data[2] = onfile.dz; ]]>
+</ioread>
 <class name="CLHEP::HepGenMatrix" ClassVersion="10">
  <version ClassVersion="10" checksum="1734210912"/>
 </class>
