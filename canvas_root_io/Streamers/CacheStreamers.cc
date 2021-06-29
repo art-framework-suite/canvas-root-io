@@ -5,8 +5,7 @@
 #include "cetlib_except/exception.h"
 
 #include "TBuffer.h"
-
-#include <memory>
+#include "TClass.h"
 
 namespace art {
 

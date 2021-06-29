@@ -3,14 +3,14 @@
 #define BOOST_TEST_MODULE (TypeTools_t)
 #include "boost/test/unit_test.hpp"
 
-#include <iostream>
+#include "canvas_root_io/Utilities/TypeTools.h"
+#include "canvas_root_io/Utilities/TypeWithDict.h"
+
+#include "TClass.h"
+
 #include <string>
 #include <typeinfo>
 #include <vector>
-
-#include "canvas/Persistency/Common/Wrapper.h"
-#include "canvas_root_io/Utilities/TypeTools.h"
-#include "canvas_root_io/Utilities/TypeWithDict.h"
 
 using namespace std::string_literals;
 using art::root::TypeWithDict;

@@ -1,11 +1,11 @@
 #include "canvas_root_io/Streamers/setPtrVectorBaseStreamer.h"
 #include "canvas/Persistency/Common/PtrVectorBase.h"
-#include "canvas/Utilities/TypeID.h"
 
 #include "TBuffer.h"
 #include "TClass.h"
 
 #include <cassert>
+#include <typeinfo>
 
 TClassStreamer*
 art::detail::PtrVectorBaseStreamer::Generate() const
@@ -36,7 +36,7 @@ art::detail::setPtrVectorBaseStreamer()
   TClass* cl = TClass::GetClass(typeid(PtrVectorBase));
   if (cl->GetStreamer() == 0) {
     cl->AdoptStreamer(new PtrVectorBaseStreamer);
-    auto const canSplit [[gnu::unused]] = cl->CanSplit();
+    auto const canSplit [[maybe_unused]] = cl->CanSplit();
     assert(!canSplit && "PtrVectorBase should not be splittable!");
   }
 }

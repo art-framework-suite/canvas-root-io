@@ -4,13 +4,12 @@
 #include "canvas/Persistency/Provenance/BranchDescription.h"
 #include "canvas/Utilities/TypeID.h"
 
+#include <string>
 #include <vector>
 
-namespace art {
-  namespace root { // Internal use only.
-    std::vector<TypeID> getWrapperTIDs(BranchDescription const& bd);
-    std::vector<TypeID> getWrapperTIDs(std::string const& productClassName);
-  }
+namespace art::root { // Internal use only.
+  std::vector<TypeID> getWrapperTIDs(BranchDescription const& bd);
+  std::vector<TypeID> getWrapperTIDs(std::string const& productClassName);
 }
 
 inline auto

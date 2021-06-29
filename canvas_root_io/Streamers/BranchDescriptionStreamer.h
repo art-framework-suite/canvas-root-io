@@ -1,8 +1,9 @@
 #ifndef canvas_root_io_Streamers_BranchDescriptionStreamer_h
 #define canvas_root_io_Streamers_BranchDescriptionStreamer_h
 
-#include "TBuffer.h"
 #include "TClassStreamer.h"
+
+class TBuffer;
 
 namespace art {
   class BranchDescription;

@@ -1,13 +1,7 @@
 // vim: set sw=2:
 
 #include "canvas_root_io/Utilities/TypeTools.h"
-#include "boost/algorithm/string.hpp"
-#include "boost/thread/tss.hpp"
-#include "canvas/Utilities/DebugMacros.h"
 #include "canvas/Utilities/Exception.h"
-#include "cetlib/container_algorithms.h"
-#include "cetlib_except/demangle.h"
-#include "messagefacility/MessageLogger/MessageLogger.h"
 
 #include "ESTLType.h"
 #include "TBaseClass.h"
@@ -15,10 +9,6 @@
 #include "TDictAttributeMap.h"
 #include "TList.h"
 #include "TVirtualCollectionProxy.h"
-
-#include <algorithm>
-#include <iostream>
-#include <memory>
 
 using namespace cet;
 using namespace std;

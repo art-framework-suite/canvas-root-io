@@ -1,15 +1,13 @@
 #ifndef canvas_root_io_test_Utilities_RootClassMapping_t_h
 #define canvas_root_io_test_Utilities_RootClassMapping_t_h
 
-#include <ostream>
-
 #include "TBuffer.h"
 #include "TClass.h"
 #include "TClassRef.h"
 #include "TClassStreamer.h"
 
-template <typename A, typename B>
-class TestProdStreamer;
+#include <ostream>
+#include <vector>
 
 template <typename A, typename B>
 class TestProd {

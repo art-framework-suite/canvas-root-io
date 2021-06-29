@@ -3,20 +3,16 @@
 #include "canvas/Utilities/Exception.h"
 #include "canvas/Utilities/FriendlyName.h"
 #include "canvas/Utilities/uniform_type_name.h"
-#include "cetlib/map_vector.h"
 #include "cetlib/replace_all.h"
-#include "cetlib_except/demangle.h"
 
 #include <algorithm>
 #include <cassert>
 #include <fstream>
 #include <iostream>
 #include <iterator>
-#include <map>
 #include <regex>
 #include <sstream>
 #include <string>
-#include <typeinfo>
 #include <utility>
 #include <vector>
 

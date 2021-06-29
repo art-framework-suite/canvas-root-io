@@ -3,7 +3,7 @@
 
 #include "canvas/Utilities/DebugMacros.h"
 #include "canvas/Utilities/Exception.h"
-#include "canvas_root_io/Utilities/TypeTools.h"
+#include "canvas/Utilities/TypeID.h"
 #include "canvas_root_io/Utilities/TypeWithDict.h"
 #include "cetlib_except/demangle.h"
 
@@ -11,9 +11,7 @@
 #include "TClass.h"
 #include "TClassEdit.h"
 #include "TDataMember.h"
-#include "TDataType.h"
 #include "TDictAttributeMap.h"
-#include "TEnum.h"
 #include "TList.h"
 
 #include <algorithm>
