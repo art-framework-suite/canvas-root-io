@@ -72,14 +72,14 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   cet_report_compiler_flags()
 
   # Find and use ROOT.
-  cet_find_package(ROOT PRIVATE REQUIRED COMPONENTS)
+  find_package(ROOT PRIVATE REQUIRED COMPONENTS)
   # Learn how to make dictionaries, executables, tests.
   include (BuildDictionary)
   include (CetMake)
   include (CetTest)
 endif()
 
-cet_find_package(ROOT PRIVATE
+find_package(ROOT PRIVATE
   COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree
   REQUIRED
 )

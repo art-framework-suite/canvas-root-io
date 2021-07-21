@@ -6,8 +6,8 @@ include(CetTest)
 # re-initialize the test environment.
 cet_test_env("FHICL_FILE_PATH=.")
 
-cet_find_package(ROOT PRIVATE COMPONENTS Core Hist REQUIRED)
-cet_find_package(canvas PRIVATE REQUIRED)
+find_package(ROOT PRIVATE COMPONENTS Core Hist REQUIRED)
+find_package(canvas PRIVATE REQUIRED)
 
 # Put everything in a different export set.
 cet_register_export_set(SET_NAME Testing NAMESPACE canvas_root_io_test SET_DEFAULT)
