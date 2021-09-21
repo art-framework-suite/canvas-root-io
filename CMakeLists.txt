@@ -14,8 +14,7 @@
 cmake_minimum_required(VERSION 3.18.2 FATAL_ERROR)
 
 find_package(cetmodules 2.13.00 REQUIRED)
-project(canvas_root_io LANGUAGES CXX)
-set(canvas_root_io_CMAKE_PROJECT_VERSION_STRING "1.10.00-alpha-01")
+project(canvas_root_io VERSION 1.09.05 LANGUAGES CXX)
 
 include(CetCMakeEnv)
 cet_cmake_env()
