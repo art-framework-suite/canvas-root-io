@@ -250,7 +250,7 @@ perllib	product_dir
 product		version		qual	flags		<table_format=2>
 canvas		v3_12_05	-
 root		v6_24_06a	-
-cetmodules	v2_25_01	-	only_for_build
+cetmodules	v2_29_11	-	only_for_build
 end_product_list
 ####################################
 
