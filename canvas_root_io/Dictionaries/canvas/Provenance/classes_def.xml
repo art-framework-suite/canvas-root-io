@@ -2,11 +2,11 @@
   <class pattern="art::Transient<*>">
     <field name="value_" transient="true"/>
   </class>
-  <class name="art::History" ClassVersion="11">
+  <class name="art::History" ClassVersion="12">
+    <version ClassVersion="12" checksum="979992093"/>
     <version ClassVersion="11" checksum="3533235054"/>
     <version ClassVersion="10" checksum="1835436919"/>
   </class>
-  <class name="art::EventSelectionIDVector"/>
   <class name="art::ProcessHistoryID"/>
   <class name="std::vector<art::ProductProvenance>"/>
   <class name="art::ProductProvenance" ClassVersion="11">
@@ -32,7 +32,7 @@
     <version ClassVersion="10" checksum="2437688295"/>
   </class>
   <class name="art::FileIndex::Element" ClassVersion="12">
-   <version ClassVersion="12" checksum="2335843031"/>
+    <version ClassVersion="12" checksum="2335843031"/>
     <version ClassVersion="11" checksum="3565390397"/>
     <version ClassVersion="10" checksum="2106446510"/>
   </class>
@@ -173,7 +173,8 @@
     ]]>
   </ioread>
   <class name="std::vector<art::BranchID>"/>
-  <class name="art::EventAuxiliary" ClassVersion="11">
+  <class name="art::EventAuxiliary" ClassVersion="12">
+   <version ClassVersion="12" checksum="2630090458"/>
     <version ClassVersion="11" checksum="731591074"/>
     <version ClassVersion="10" checksum="3057204332"/>
   </class>
