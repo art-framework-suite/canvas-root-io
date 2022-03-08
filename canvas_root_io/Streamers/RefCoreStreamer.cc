@@ -10,11 +10,8 @@
 namespace art {
 
   RefCoreStreamer::RefCoreStreamer(PrincipalBase const* principal /*=nullptr*/)
-  {
-    // Must do this way, thread sanitizer does not handle
-    // ctor initializer properly.
-    principal_ = principal;
-  }
+    : principal_{principal}
+  {}
 
   void
   RefCoreStreamer::setPrincipal(PrincipalBase const* principal)

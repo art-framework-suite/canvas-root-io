@@ -3,7 +3,7 @@
 #include "canvas/Persistency/Provenance/EventAuxiliary.h"
 #include "canvas/Persistency/Provenance/FileFormatVersion.h"
 #include "canvas/Persistency/Provenance/FileIndex.h"
-#include "canvas/Persistency/Provenance/History.h"
+#include "canvas/Persistency/Provenance/Compatibility/History.h"
 #include "canvas/Persistency/Provenance/ParameterSetMap.h"
 #include "canvas/Persistency/Provenance/Parentage.h"
 #include "canvas/Persistency/Provenance/ProcessConfiguration.h"
