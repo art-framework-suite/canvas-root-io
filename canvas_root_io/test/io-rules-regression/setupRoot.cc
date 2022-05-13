@@ -19,6 +19,7 @@ namespace {
                    char const* location,
                    char const* message)
   {
+    using namespace std::literals::string_literals;
     auto const npos = std::string::npos;
     // auto const npos = std::string::npos;
 
@@ -75,8 +76,8 @@ namespace {
 
     // Intercept and ignore messages:
     for (std::string const& s :
-         {"art::Transient<art::ProductRegistry::Transients>",
-          "art::DoNotRecordParents"}) {
+         {"art::Transient<art::ProductRegistry::Transients>"s,
+          "art::DoNotRecordParents"s}) {
       if (el_message ==
           (std::string("no dictionary for class ") + s + " is available")) {
         return;
