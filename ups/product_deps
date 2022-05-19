@@ -249,7 +249,7 @@ perllib	product_dir
 ####################################
 product		version		qual	flags		<table_format=2>
 canvas		v3_13_01	-
-root		v6_26_02a	-
+root		v6_26_02b	-
 cetmodules	v3_13_02	-	only_for_build
 end_product_list
 ####################################
@@ -314,6 +314,8 @@ e24:debug	e24:debug	e24:p3912:debug
 e24:prof	e24:prof	e24:p3912:prof
 e25:debug	e25:debug	e25:p3912:debug
 e25:prof	e25:prof	e25:p3912:prof
+e26:debug	e26:debug	e26:p3912:debug
+e26:prof	e26:prof	e26:p3912:prof
 end_qualifier_list
 ####################################
 
