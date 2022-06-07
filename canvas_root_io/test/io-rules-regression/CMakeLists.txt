@@ -77,7 +77,7 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   include (CetTest)
 endif()
 
-find_package(ROOT PRIVATE
+find_package(ROOT
   COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree
   REQUIRED
 )
