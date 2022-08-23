@@ -1,6 +1,6 @@
-find_package(ROOT PRIVATE COMPONENTS RIO Tree Hist Matrix MathCore Core REQUIRED)
-find_package(canvas PRIVATE REQUIRED)
-find_package(cetlib PRIVATE REQUIRED)
+find_package(ROOT COMPONENTS RIO Tree Hist Matrix MathCore Core REQUIRED)
+find_package(canvas REQUIRED)
+find_package(cetlib REQUIRED)
 
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib::cetlib NO_INSTALL)
 

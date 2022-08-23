@@ -206,6 +206,7 @@
   </class>
   <class name="std::set<art::ProcessHistoryID>"/>
   <class name="art::ProcessHistoryMap"/>
+  <class name="std::pair<art::ProcessHistoryID, art::ProcessHistory>"/>
   <class name="std::pair<const art::ProcessHistoryID, art::ProcessHistory>"/>
   <class name="art::ParameterSetBlob" ClassVersion="10">
     <version ClassVersion="10" checksum="1823408429"/>
