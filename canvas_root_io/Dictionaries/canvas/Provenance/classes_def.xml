@@ -31,7 +31,8 @@
   <class name="art::FileIndex" ClassVersion="10">
     <version ClassVersion="10" checksum="2437688295"/>
   </class>
-  <class name="art::FileIndex::Element" ClassVersion="12">
+  <class name="art::FileIndex::Element" ClassVersion="13">
+    <version ClassVersion="13" checksum="2335843031"/>
     <version ClassVersion="12" checksum="2335843031"/>
     <version ClassVersion="11" checksum="3565390397"/>
     <version ClassVersion="10" checksum="2106446510"/>
@@ -50,6 +51,29 @@
           include="canvas/Persistency/Provenance/EventID.h">
     <![CDATA[ entry = onfile.entry_; ]]>
   </ioread>
+
+  <!-- BEGIN art-v2-develop backwards compatibility
+
+       The following two IO read rules account for an art::FileIndex::Element
+       class version of 12 with a checksum of 349883229 instead of the stated
+       checksum above of 2335843031.  This occurred due to a divergence in
+       the development of the art-v2-develop and develop branches. -->
+  <ioread sourceClass="art::FileIndex::Element" checksum="[349883229]"
+          targetClass="art::FileIndex::Element"
+          source="art::EventID eventID_;"
+          target="eventID"
+          include="canvas/Persistency/Provenance/EventID.h">
+    <![CDATA[ eventID = onfile.eventID_; ]]>
+  </ioread>
+  <ioread sourceClass="art::FileIndex::Element" checksum="[349883229]"
+          targetClass="art::FileIndex::Element"
+          source="art::FileIndex::EntryNumber_t entry_;"
+          target="entry"
+          include="canvas/Persistency/Provenance/EventID.h">
+    <![CDATA[ entry = onfile.entry_; ]]>
+  </ioread>
+  <!-- END art-v2-develop backwards compatibility -->
+
   <class name="std::vector<art::FileIndex::Element>"/>
   <class name="art::FileIndex::Transients"/>
   <class name="std::vector<art::ProcessConfiguration>"/>
