@@ -2,11 +2,11 @@
   <class pattern="art::Transient<*>">
     <field name="value_" transient="true"/>
   </class>
-  <class name="art::History" ClassVersion="11">
+  <class name="art::History" ClassVersion="12">
+    <version ClassVersion="12" checksum="979992093"/>
     <version ClassVersion="11" checksum="3533235054"/>
     <version ClassVersion="10" checksum="1835436919"/>
   </class>
-  <class name="art::EventSelectionIDVector"/>
   <class name="art::ProcessHistoryID"/>
   <class name="std::vector<art::ProductProvenance>"/>
   <class name="art::ProductProvenance" ClassVersion="11">
@@ -31,8 +31,9 @@
   <class name="art::FileIndex" ClassVersion="10">
     <version ClassVersion="10" checksum="2437688295"/>
   </class>
-  <class name="art::FileIndex::Element" ClassVersion="12">
-   <version ClassVersion="12" checksum="2335843031"/>
+  <class name="art::FileIndex::Element" ClassVersion="13">
+    <version ClassVersion="13" checksum="2335843031"/>
+    <version ClassVersion="12" checksum="2335843031"/>
     <version ClassVersion="11" checksum="3565390397"/>
     <version ClassVersion="10" checksum="2106446510"/>
   </class>
@@ -50,6 +51,29 @@
           include="canvas/Persistency/Provenance/EventID.h">
     <![CDATA[ entry = onfile.entry_; ]]>
   </ioread>
+
+  <!-- BEGIN art-v2-develop backwards compatibility
+
+       The following two IO read rules account for an art::FileIndex::Element
+       class version of 12 with a checksum of 349883229 instead of the stated
+       checksum above of 2335843031.  This occurred due to a divergence in
+       the development of the art-v2-develop and develop branches. -->
+  <ioread sourceClass="art::FileIndex::Element" checksum="[349883229]"
+          targetClass="art::FileIndex::Element"
+          source="art::EventID eventID_;"
+          target="eventID"
+          include="canvas/Persistency/Provenance/EventID.h">
+    <![CDATA[ eventID = onfile.eventID_; ]]>
+  </ioread>
+  <ioread sourceClass="art::FileIndex::Element" checksum="[349883229]"
+          targetClass="art::FileIndex::Element"
+          source="art::FileIndex::EntryNumber_t entry_;"
+          target="entry"
+          include="canvas/Persistency/Provenance/EventID.h">
+    <![CDATA[ entry = onfile.entry_; ]]>
+  </ioread>
+  <!-- END art-v2-develop backwards compatibility -->
+
   <class name="std::vector<art::FileIndex::Element>"/>
   <class name="art::FileIndex::Transients"/>
   <class name="std::vector<art::ProcessConfiguration>"/>
@@ -173,7 +197,8 @@
     ]]>
   </ioread>
   <class name="std::vector<art::BranchID>"/>
-  <class name="art::EventAuxiliary" ClassVersion="11">
+  <class name="art::EventAuxiliary" ClassVersion="12">
+   <version ClassVersion="12" checksum="2630090458"/>
     <version ClassVersion="11" checksum="731591074"/>
     <version ClassVersion="10" checksum="3057204332"/>
   </class>
@@ -192,7 +217,8 @@
   <class name="art::SubRunID" ClassVersion="10">
     <version ClassVersion="10" checksum="2879307132"/>
   </class>
-  <class name="art::RunAuxiliary" ClassVersion="11">
+  <class name="art::RunAuxiliary" ClassVersion="12">
+   <version ClassVersion="12" checksum="2181715478"/>
     <version ClassVersion="11" checksum="632272083"/>
     <version ClassVersion="10" checksum="156856400"/>
   </class>
@@ -204,6 +230,7 @@
   </class>
   <class name="std::set<art::ProcessHistoryID>"/>
   <class name="art::ProcessHistoryMap"/>
+  <class name="std::pair<art::ProcessHistoryID, art::ProcessHistory>"/>
   <class name="std::pair<const art::ProcessHistoryID, art::ProcessHistory>"/>
   <class name="art::ParameterSetBlob" ClassVersion="10">
     <version ClassVersion="10" checksum="1823408429"/>

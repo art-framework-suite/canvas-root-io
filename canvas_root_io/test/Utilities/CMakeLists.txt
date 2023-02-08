@@ -1,3 +1,7 @@
+find_package(ROOT COMPONENTS RIO Tree Hist Matrix MathCore Core REQUIRED)
+find_package(canvas REQUIRED)
+find_package(cetlib REQUIRED)
+
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib::cetlib NO_INSTALL)
 
 cet_make_exec(NAME TypeNameBranchName_t

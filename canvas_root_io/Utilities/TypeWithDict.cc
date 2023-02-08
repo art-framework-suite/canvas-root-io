@@ -368,10 +368,11 @@ namespace art {
       result = TEnum::GetEnum(uname.c_str(), TEnum::kAutoload);
     }
     if (result == nullptr) {
-      // Note that we are constrained to looking in the list of what are
-      // nominally typedefs, not fundamental types. However ROOT adds
-      // entries for what *it* classifies as fundamental types (See the
-      // enum EDataType in core/meta/inc/TDataType.h for the list).
+      // Note that we are constrained to looking in the list of what
+      // are nominally typedefs/type aliases, not fundamental
+      // types. However ROOT adds entries for what *it* classifies as
+      // fundamental types (See the enum EDataType in
+      // core/meta/inc/TDataType.h for the list).
       result = gROOT->GetType(uname.c_str());
     }
     if (result != nullptr) {

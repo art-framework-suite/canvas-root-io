@@ -61,7 +61,7 @@ set(WANT_XML_READRULES_CDATA TRUE) # Customize as necessary in subdirectories.
 
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   # Using in (almost) standalone mode
-  cmake_minimum_required(VERSION 3.19...3.20 FATAL_ERROR)
+  cmake_minimum_required(VERSION 3.19...3.21 FATAL_ERROR)
   project(io_rules_regression_tests VERSION 1.00.00 LANGUAGES CXX)
 
   # Find and use cetmodules.
@@ -71,15 +71,13 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   cet_set_compiler_flags(DIAGS VIGILANT WERROR NO_UNDEFINED)
   cet_report_compiler_flags()
 
-  # Find and use ROOT.
-  find_package(ROOT PRIVATE REQUIRED COMPONENTS)
   # Learn how to make dictionaries, executables, tests.
   include (BuildDictionary)
   include (CetMake)
   include (CetTest)
 endif()
 
-find_package(ROOT PRIVATE
+find_package(ROOT
   COMPONENTS Core GenVector Hist MathCore RIO Smatrix Tree
   REQUIRED
 )

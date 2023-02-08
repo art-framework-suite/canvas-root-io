@@ -24,19 +24,15 @@ namespace art {
 
   template <typename T>
   class TransientStreamer : public TClassStreamer {
+  public:
+    using element_type = T;
 
-  public: // TYPES
-    typedef T element_type;
-
-  public: // MEMBER FUNCTIONS
     TransientStreamer();
-
-  public: // MEMBER FUNCTIONS
-    virtual TClassStreamer* Generate() const override;
+    TClassStreamer* Generate() const override;
 
     void operator()(TBuffer& R_b, void* objp) override;
 
-  private: // MEMBER DATA
+  private:
     std::string className_;
 
     TClassRef cl_;
