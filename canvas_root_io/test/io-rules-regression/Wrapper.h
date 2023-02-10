@@ -53,7 +53,8 @@ arttest::Wrapper<T>::product() const
 }
 
 template <typename T>
-T const* arttest::Wrapper<T>::operator->() const
+T const*
+arttest::Wrapper<T>::operator->() const
 {
   return product();
 }
