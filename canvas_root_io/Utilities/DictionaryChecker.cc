@@ -24,7 +24,7 @@ namespace {
 
   struct DictionaryAction {
     DictionaryAction(string name_stem, vector<size_t> args_to_check = {})
-      : name_stem(move(name_stem)), args_to_check(move(args_to_check))
+      : name_stem(std::move(name_stem)), args_to_check(std::move(args_to_check))
     {}
     string name_stem;
     vector<size_t> args_to_check;
