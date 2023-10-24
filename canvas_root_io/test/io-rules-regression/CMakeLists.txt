@@ -68,7 +68,7 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   find_package(cetmodules 2.13.00 REQUIRED)
   include(CetCMakeEnv)
   cet_cmake_env()
-  cet_set_compiler_flags(DIAGS VIGILANT WERROR NO_UNDEFINED)
+  cet_set_compiler_flags(DIAGS VIGILANT DWARF_VER 4 WERROR NO_UNDEFINED)
   cet_report_compiler_flags()
 
   # Learn how to make dictionaries, executables, tests.
