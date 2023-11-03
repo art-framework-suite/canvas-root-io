@@ -4,6 +4,9 @@ find_package(cetlib REQUIRED)
 
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib::cetlib NO_INSTALL)
 
+cet_transitive_paths(LIBRARY_DIR BINARY IN_TREE)
+cet_test_env_prepend(LD_LIBRARY_PATH ${TRANSITIVE_PATHS_WITH_LIBRARY_DIR})
+
 cet_make_exec(NAME TypeNameBranchName_t
   NO_INSTALL
   LIBRARIES PRIVATE canvas::canvas
