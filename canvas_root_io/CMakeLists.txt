@@ -5,7 +5,6 @@ find_package(canvas REQUIRED EXPORT)
 find_package(cetlib REQUIRED EXPORT)
 find_package(cetlib_except REQUIRED)
 find_package(fhiclcpp REQUIRED)
-find_package(hep_concurrency REQUIRED EXPORT)
 find_package(messagefacility REQUIRED)
 
 include(CetMake)
@@ -26,10 +25,9 @@ cet_make_library(HEADERS_TARGET
     Utilities/getWrapperTIDs.cc
     Utilities/TypeWithDict.cc
     Utilities/TypeTools.cc
-  LIBRARIES
+  LIBRARIES PUBLIC
     canvas::canvas
     cetlib::cetlib
-    hep_concurrency::hep_concurrency
     ROOT::Core
   PRIVATE
     messagefacility::MF_MessageLogger
