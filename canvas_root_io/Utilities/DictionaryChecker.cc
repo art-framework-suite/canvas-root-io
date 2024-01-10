@@ -65,25 +65,10 @@ namespace {
     {"stack<"s, {0}}           // FIXME: Should check Container.
   };
 
-  bool
-  match_from_begin(string const& test, string const& ref)
-  {
-    return test.size() < ref.size() ? false :
-                                      test.compare(0, ref.size(), ref) == 0;
-  }
-
-  bool
-  match_from_end(string const& test, string const& ref)
-  {
-    return test.size() < ref.size() ?
-             false :
-             test.compare(test.size() - ref.size(), ref.size(), ref) == 0;
-  }
-
   void
   erase_if_match_from_begin(string& test, string const& ref)
   {
-    if (match_from_begin(test, ref)) {
+    if (test.starts_with(ref)) {
       test.erase(0, ref.size());
     }
   }
@@ -91,7 +76,7 @@ namespace {
   void
   erase_if_match_from_end(string& test, string const& ref)
   {
-    if (match_from_end(test, ref)) {
+    if (test.ends_with(ref)) {
       test.erase(test.size() - ref.size());
     }
   }
@@ -105,7 +90,7 @@ namespace {
     bool result = false;
     auto const i = find_if(
       cbegin(actionTable), cend(actionTable), [&name](auto const& nameAction) {
-        return match_from_begin(name, nameAction.name_stem);
+        return name.starts_with(nameAction.name_stem);
       });
     if (i != cend(actionTable)) {
       for_each(
@@ -182,7 +167,7 @@ art::root::DictionaryChecker::checkDictionaries(string const& name_orig,
   if (name == "void") {
     return;
   }
-  if (match_from_end(name, "::(anonymous)")) {
+  if (name.ends_with("::(anonymous)")) {
     return;
   }
   TypeWithDict ty{name};
