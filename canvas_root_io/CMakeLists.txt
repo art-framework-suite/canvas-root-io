@@ -1,4 +1,4 @@
-find_package(Boost COMPONENTS headers thread REQUIRED)
+find_package(Boost COMPONENTS thread REQUIRED)
 find_package(CLHEP COMPONENTS Matrix Vector REQUIRED)
 find_package(ROOT 6.18.00 COMPONENTS Core REQUIRED EXPORT)
 find_package(canvas REQUIRED EXPORT)
