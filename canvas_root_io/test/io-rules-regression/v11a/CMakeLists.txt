@@ -11,7 +11,7 @@ foreach(WRAPPED IN ITEMS "" "wrapped_")
     )
 
   set_property(TEST ${WRAPPED}vertex_v11_r_v10_a PROPERTY
-    ENVIRONMENT ${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}
+    ENVIRONMENT_MODIFICATION ROOT_LIBRARY_PATH=path_list_append:${CMAKE_CURRENT_BINARY_DIR}
     )
 
   set_property(TEST ${WRAPPED}vertex_v11_r_v10_a APPEND PROPERTY

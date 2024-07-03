@@ -165,17 +165,11 @@ function(vertex_tests VERTEX_VERSION)
 
   message(DEBUG "v${VERTEX_VERSION}_ROOT_INCLUDE_PATH=${v${VERTEX_VERSION}_ROOT_INCLUDE_PATH}")
 
-  if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    set(varname_prefix DY)
-  else()
-    unset(varname_prefix)
-  endif()
-
   build_dictionary(DICT_NAME_VAR dictname NO_INSTALL
     CLASSES_DEF_XML ${CMAKE_CURRENT_BINARY_DIR}/classes_def.xml
     CLASSES_H ${CMAKE_CURRENT_SOURCE_DIR}/../classes.h
     CCV_ENVIRONMENT
-    "${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}"
+    "ROOT_LIBRARY_PATH=$ENV{ROOT_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR}"
     "ROOT_INCLUDE_PATH=${CMAKE_CURRENT_FUNCTION_LIST_DIR}:${CMAKE_CURRENT_BINARY_DIR}:$ENV{ROOT_INCLUDE_PATH}"
     )
 
@@ -215,8 +209,8 @@ function(vertex_tests VERTEX_VERSION)
       set_property(TEST
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_r
-        PROPERTY ENVIRONMENT
-        ${varname_prefix}LD_LIBRARY_PATH=$ENV{${varname_prefix}LD_LIBRARY_PATH}:${CMAKE_CURRENT_BINARY_DIR})
+        PROPERTY ENVIRONMENT_MODIFICATION
+        ROOT_LIBRARY_PATH=path_list_append:${CMAKE_CURRENT_BINARY_DIR})
 
       set_property(TEST
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w
