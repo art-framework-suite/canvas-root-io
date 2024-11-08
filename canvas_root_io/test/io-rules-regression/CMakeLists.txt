@@ -204,7 +204,9 @@ function(vertex_tests VERTEX_VERSION)
         TEST_EXEC ${CMAKE_CURRENT_BINARY_DIR}/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_reader
         TEST_ARGS ../${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w.d/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}.root
         REQUIRED_FILES ../${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w.d/${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}.root
-        REF ${CMAKE_CURRENT_SOURCE_DIR}/../vertex-ref.txt)
+        REF ${CMAKE_CURRENT_SOURCE_DIR}/../vertex-ref.txt
+        OUTPUT_FILTERS cetlib::filter-output
+      )
 
       set_property(TEST
         ${WRAPPED}vertex_v${VERTEX_VERSION}${SUFFIX}_w

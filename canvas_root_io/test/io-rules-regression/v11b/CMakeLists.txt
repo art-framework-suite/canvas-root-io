@@ -9,7 +9,8 @@ foreach(WRAPPED IN ITEMS "" "wrapped_")
     TEST_ARGS ../../v10/${WRAPPED}vertex_v10_w.d/${WRAPPED}vertex_v10.root
     REQUIRED_FILES ../../v10/${WRAPPED}vertex_v10_w.d/${WRAPPED}vertex_v10.root
     REF ${CMAKE_CURRENT_SOURCE_DIR}/../vertex-ref.txt
-    )
+    OUTPUT_FILTERS cetlib::filter-output
+  )
 
   set_property(TEST ${WRAPPED}vertex_v11_r_v10_b PROPERTY
     ENVIRONMENT_MODIFICATION ROOT_LIBRARY_PATH=path_list_append:${CMAKE_CURRENT_BINARY_DIR}

@@ -2,7 +2,7 @@ find_package(Boost COMPONENTS thread REQUIRED)
 find_package(CLHEP COMPONENTS Matrix Vector REQUIRED)
 find_package(ROOT COMPONENTS Core REQUIRED EXPORT)
 find_package(canvas REQUIRED EXPORT)
-find_package(cetlib REQUIRED EXPORT)
+find_package(cetlib 3.20.00 REQUIRED EXPORT) # For cetlib::filter-output
 find_package(cetlib_except REQUIRED)
 find_package(fhiclcpp REQUIRED)
 find_package(messagefacility REQUIRED)
