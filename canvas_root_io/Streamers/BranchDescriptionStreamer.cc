@@ -104,7 +104,7 @@ namespace art {
       }
       int algorithm = compression / 100;
       int level = compression % 100;
-      if (algorithm >= ROOT::kUndefinedCompressionAlgorithm) {
+      if (algorithm >= ROOT::RCompressionSetting::EAlgorithm::kUndefined) {
         throw Exception(errors::Configuration, "IllegalCompressionAlgorithm")
           << "' An illegal ROOT compression algorithm of " << algorithm
           << " is specified for class " << bd.transients_.get().wrappedName_
