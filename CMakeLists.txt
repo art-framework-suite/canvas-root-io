@@ -17,6 +17,10 @@ find_package(cetmodules 2.13.00 REQUIRED)
 project(canvas_root_io VERSION 1.14.00 LANGUAGES CXX)
 
 include(CetCMakeEnv)
+include(CetCMakeUtils) # cet_cmake_module_directories()
+include(SetCompilerFlags)
+include(CetCMakeConfig)
+
 cet_cmake_env()
 
 # Find our own CMake modules, and tell everyone else where to find them.
