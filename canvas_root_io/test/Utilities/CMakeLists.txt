@@ -1,10 +1,13 @@
+include(CetTransitivePaths)
+include(CetMake)
+
 find_package(ROOT COMPONENTS RIO Tree Hist Matrix MathCore Core REQUIRED)
 find_package(canvas REQUIRED)
 find_package(cetlib REQUIRED)
 
 art_dictionary(NO_DEFAULT_LIBRARIES DICTIONARY_LIBRARIES cetlib::cetlib NO_INSTALL)
 
-cet_transitive_paths(LIBRARY_DIR BINARY IN_TREE)
+cet_transitive_paths(LIBRARY_DIR BINARY_ONLY IN_TREE)
 cet_test_env_prepend(ROOT_LIBRARY_PATH ${TRANSITIVE_PATHS_WITH_LIBRARY_DIR})
 
 cet_make_exec(NAME TypeNameBranchName_t

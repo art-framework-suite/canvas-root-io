@@ -7,7 +7,9 @@ find_package(cetlib_except REQUIRED)
 find_package(fhiclcpp REQUIRED)
 find_package(messagefacility REQUIRED)
 
-include(CetMake)
+include(CetMakeLibrary)
+include(InstallHeaders)
+include(InstallSource)
 
 add_subdirectory(Dictionaries)
 add_subdirectory(Streamers)

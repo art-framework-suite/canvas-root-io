@@ -74,6 +74,7 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   # Learn how to make dictionaries, executables, tests.
   include (BuildDictionary)
   include (CetMake)
+  include (CetMakeLibrary)
   include (CetTest)
 endif()
 
