@@ -255,7 +255,7 @@ main(int argc, char** argv)
           ++failures_in_file;
         }
       } // Loop over type lines.
-    }   // Loop while we have a good stream.
+    } // Loop while we have a good stream.
     if (failures_in_file > 0) {
       error << "FATAL ERROR: found " << failures_in_file
             << " validation failures in text file\n"
